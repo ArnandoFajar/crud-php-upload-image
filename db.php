@@ -2,7 +2,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$dbname = "crud-mahasiswa";
+$dbname = "crud_mahasiswa";
 
 $conn = mysqli_connect($host, $username, $password, $dbname);
 if (!$conn) {
