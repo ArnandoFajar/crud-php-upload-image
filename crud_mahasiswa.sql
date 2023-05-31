@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tbl_mahasiswa` (
-  `npm` int(15) NOT NULL,
+  `npm` varchar(15) NOT NULL,
   `nama` varchar(200) NOT NULL,
   `program_studi` varchar(100) NOT NULL,
   `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL,
@@ -37,17 +37,6 @@ CREATE TABLE `tbl_mahasiswa` (
   `foto` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data untuk tabel `tbl_mahasiswa`
---
-
-INSERT INTO `tbl_mahasiswa` (`npm`, `nama`, `program_studi`, `jenis_kelamin`, `alamat`, `email`, `foto`) VALUES
-(9, 'Lah Piye', 'S1 Matematika', 'perempuan', 'Anim ut explicabo Q', 'noxubovy@mailinator.com', '1685437528_7669.png'),
-(30, 'Explicabo Laborum p', 'D3 Laboratorium Sains', 'perempuan', 'Provident sed ipsam', 'hytyje@mailinator.com', '1685437653_8301.png');
-
---
--- Indexes for dumped tables
---
 
 --
 -- Indeks untuk tabel `tbl_mahasiswa`

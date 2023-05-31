@@ -3,8 +3,8 @@ require_once('db.php');
 $upload_dir = 'uploads/';
 
 if (isset($_GET['npm'])) {
-  $npm = $_GET['npm'];
-  $sql = "select * from tbl_mahasiswa where npm=" . $npm;
+  $npm = base64_decode($_GET['npm']);
+  $sql = "select * from tbl_mahasiswa where npm='" . $npm . "'";
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
@@ -94,7 +94,7 @@ if (isset($_GET['npm'])) {
                 </form>
                 <div class="d-flex">
                   <a class="btn btn-outline-danger mr-4" href="index.php"><i class="fas fa-arrow-left"></i> <span>Kembali</span></a>
-                  <a href="edit.php?npm=<?php echo $row['npm'] ?>" class="btn btn-outline-info ml-4">Ubah <i class="fa fa-user-edit"></i></a>
+                  <a href="edit.php?npm=<?php echo base64_encode($row['npm']) ?>" class="btn btn-outline-info ml-4">Ubah <i class="fa fa-user-edit"></i></a>
                 </div>
               </div>
             </div>

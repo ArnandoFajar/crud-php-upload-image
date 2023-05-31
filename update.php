@@ -10,8 +10,8 @@ $pesanError = [];
 
 //get record data berdasarkan npm
 if (isset($_GET['npm'])) {
-    $npm = $_GET['npm'];
-    $sql = "select * from tbl_mahasiswa where npm=" . $npm;
+    $npm = base64_decode($_GET['npm']);
+    $sql = "select * from tbl_mahasiswa where npm='" . $npm . "'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
@@ -102,7 +102,7 @@ if (isset($_POST['Submit'])) {
                     alamat = '" . $alamat . "',
                     email = '" . $email . "',
 					foto = '" . $foto . "'
-					where npm=" . $oldnpm;
+					where npm='" . $oldnpm . "'";
         $result = mysqli_query($conn, $sql);
         if ($result) {
             // Menyimpan pesan berhasil dalam session
@@ -120,7 +120,7 @@ if (isset($_POST['Submit'])) {
         $_SESSION['post'] = $_POST;
 
         // Redirect kembali ke halaman edit
-        header('Location: edit.php?npm=' . $row['npm']);
+        header('Location: edit.php?npm=' . base64_encode($row['npm']));
         exit; // Penting untuk menghentikan eksekusi script setelah melakukan redirect
 
     }

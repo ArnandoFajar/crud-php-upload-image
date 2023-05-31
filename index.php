@@ -98,8 +98,8 @@ if (isset($_SESSION['error_message'])) {
                         <td><?php echo $row['program_studi'] ?></td>
                         <td><img src="<?php echo $upload_dir . $row['foto'] ?>" height="100"></td>
                         <td class="text-center">
-                          <a href="show.php?npm=<?php echo $row['npm'] ?>" class="btn btn-success">Detail <i class="fa fa-eye"></i></a>
-                          <a href="edit.php?npm=<?php echo $row['npm'] ?>" class="btn btn-info">Ubah <i class="fa fa-user-edit"></i></a>
+                          <a href="show.php?npm=<?php echo base64_encode($row['npm']) ?>" class="btn btn-success">Detail <i class="fa fa-eye"></i></a>
+                          <a href="edit.php?npm=<?php echo base64_encode($row['npm']) ?>" class="btn btn-info">Ubah <i class="fa fa-user-edit"></i></a>
                           <a href="delete.php?delete=<?php echo base64_encode($row['npm']) ?>" class="btn btn-danger" onclick="return confirm('Are you sure to delete this record?')">Hapus <i class="fa fa-trash-alt"></i></a>
                         </td>
                       </tr>
