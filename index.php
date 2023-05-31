@@ -17,6 +17,11 @@ if (isset($_GET['delete'])) {
       $_SESSION['success_message'] = "Data mahasiswa berhasil dihapus";
       header('location:index.php');
       exit;
+    } else {
+      // Menyimpan pesan gagal dalam session
+      $_SESSION['success_message'] = "Data mahasiswa gagal dihapus";
+      header('location:index.php');
+      exit;
     }
   }
 }
