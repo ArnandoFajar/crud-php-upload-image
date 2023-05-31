@@ -79,7 +79,7 @@ if (isset($_SESSION['error_message'])) {
             <form class="" action="store.php" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="npm">NPM</label>
-                <input type="number" class="form-control" name="npm" placeholder="Masukkan NPM" value="<?= isset($row['npm']) ? $row['npm'] : ''  ?>">
+                <input type="text" class="form-control" name="npm" placeholder="Masukkan NPM" maxlength="15" value="<?= isset($row['npm']) ? $row['npm'] : ''  ?>">
               </div>
               <div class="form-group">
                 <label for="nama">Nama</label>

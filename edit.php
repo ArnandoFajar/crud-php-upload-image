@@ -83,7 +83,7 @@ if (isset($_SESSION['error_message'])) {
               <input type="hidden" class="form-control" name="old_npm" value="<?php echo $row['npm'] ?>">
               <div class="form-group">
                 <label for="npm">NPM</label>
-                <input type="number" class="form-control" name="npm" placeholder="Masukkan NPM" value="<?php echo $row['npm'] ?>">
+                <input type="text" class="form-control" name="npm" maxlength="15" placeholder="Masukkan NPM" value="<?php echo $row['npm'] ?>">
               </div>
               <div class="form-group">
                 <label for="nama">Nama</label>
