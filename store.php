@@ -44,7 +44,7 @@ if (isset($_POST['Submit'])) {
 			}
 		} else {
 			//input pesan error ke dalam array
-			array_push($pesanError, 'Format gambar tidak valid');
+			array_push($pesanError, 'Format gambar harus jpeg,jpg,png,gif');
 		}
 	}
 

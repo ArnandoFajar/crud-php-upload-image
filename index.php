@@ -3,34 +3,20 @@ session_start();
 include('db.php');
 $upload_dir = 'uploads/';
 
-if (isset($_GET['delete'])) {
-  $npm = $_GET['delete'];
-  $sql = "select * from tbl_mahasiswa where npm = " . $npm;
-  $result = mysqli_query($conn, $sql);
-  if (mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    $foto = $row['foto'];
-    unlink($upload_dir . $foto);
-    $sql = "delete from tbl_mahasiswa where npm=" . $npm;
-    if (mysqli_query($conn, $sql)) {
-      // Menyimpan pesan berhasil dalam session
-      $_SESSION['success_message'] = "Data mahasiswa berhasil dihapus";
-      header('location:index.php');
-      exit;
-    } else {
-      // Menyimpan pesan gagal dalam session
-      $_SESSION['success_message'] = "Data mahasiswa gagal dihapus";
-      header('location:index.php');
-      exit;
-    }
-  }
-}
 // Memeriksa apakah ada pesan success dalam session
 if (isset($_SESSION['success_message'])) {
   $successMessage = $_SESSION['success_message'];
 
   // Hapus pesan success dari session
   unset($_SESSION['success_message']);
+}
+
+// Memeriksa apakah ada pesan Error dalam session
+if (isset($_SESSION['error_message'])) {
+  $errorMessage = $_SESSION['error_message'];
+
+  // Hapus pesan error dari session
+  unset($_SESSION['error_message']);
 }
 ?>
 <!DOCTYPE html>
@@ -62,10 +48,19 @@ if (isset($_SESSION['success_message'])) {
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-12">
-        <!-- Tampilkan pesan error jika ada -->
+        <!-- Tampilkan pesan Success jika ada -->
         <?php if (isset($successMessage)) : ?>
           <div class="alert alert-success alert-dismissible fade show" role="alert">
             <?php echo $successMessage ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <?php endif; ?>
+        <!-- Tampilkan pesan Error jika ada -->
+        <?php if (isset($errorMessage)) : ?>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?php echo $errorMessage ?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -105,7 +100,7 @@ if (isset($_SESSION['success_message'])) {
                         <td class="text-center">
                           <a href="show.php?npm=<?php echo $row['npm'] ?>" class="btn btn-success">Detail <i class="fa fa-eye"></i></a>
                           <a href="edit.php?npm=<?php echo $row['npm'] ?>" class="btn btn-info">Ubah <i class="fa fa-user-edit"></i></a>
-                          <a href="index.php?delete=<?php echo $row['npm'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure to delete this record?')">Hapus <i class="fa fa-trash-alt"></i></a>
+                          <a href="delete.php?delete=<?php echo base64_encode($row['npm']) ?>" class="btn btn-danger" onclick="return confirm('Are you sure to delete this record?')">Hapus <i class="fa fa-trash-alt"></i></a>
                         </td>
                       </tr>
                   <?php
